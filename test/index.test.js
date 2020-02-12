@@ -1,55 +1,36 @@
-const assert = require("chai").assert;
-const expect = require("chai").expect;
-const TodoList = require("../todolist");
-const EMPTY = 0;
+// const expect = require('chai').expect;
+// const nock = require('nock');
+const index = require('../index');
+const request = require('supertest');
 
-describe("todolist", () => {
-  it("is the todolist empty", function() {
-    const todoList = new TodoList();
-    console.log(todoList);
-    assert.equal(todoList.isEmpty(), true);
-  });
+const responseTodoList = {todos: ['todo1', 'todo2', 'todo3', 'todo4']};
 
-  it("should add a todo is not empty", function() {
-    const todoList = new TodoList();
-    todoList.add("todo");
-    assert.equal(todoList.isEmpty(), false);
-  });
-
-  it("should add a todo and increase todolist size From 0 to 1", function() {
-    const todoList = new TodoList();
-    const beginingSize = todoList.todos.length;
-    todoList.add("todo");
-    assert.equal(todoList.todos.length, beginingSize + 1);
-  });
-
-  it("should remove the selected todo by index in an empty list", function() {
-    const todoList = new TodoList();
-
-    expect(() => {
-      todoList.remove(0);
-    }).to.throw("list is empty");
-  });
-
-  it("should remove a todo from the todolist", function() {
-    const todoList = new TodoList();
-    todoList.add("todo1");
-    todoList.add("todo2");
-    const beginingSize = todoList.todos.length;
-    todoList.remove(0);
-    assert.equal(todoList.todos.length, beginingSize - 1);
-  });
-
-  it("should remove the selected todo by index ", function() {
-    const todoList = new TodoList();
-    todoList.add("todo1");
-    todoList.add("todo2");
-    const beginingSize = todoList.todos.length;
-    todoList.remove(0);
-    assert.deepEqual(todoList.todos, ["todo2"]);
-  });
-
-
-
-
-});
+// describe('index', () => {
+//
+//     /**
+//      * Testing get all user endpoint
+//      */
+//     describe('GET /', function () {
+//         it.skip('respond with json containing a list empty of todo', function (done) {
+//             request(app)
+//                 .get('/todo-list')
+//                 .set('Accept', 'application/json')
+//                 .expect('Content-Type', /json/)
+//                 .expect(200, done);
+//         });
+//     });
+//
+//
+//     // it('Get a user by username', () => {
+//     //     return getUser('octocat')
+//     //         .then(response => {
+//     //             //expect an object back
+//     //             expect(typeof response).to.equal('object');
+//     //
+//     //             //Test result of name, company and location for the response
+//     //             expect(response.name).to.equal('The Octocat')
+//     //             expect(response.company).to.equal('GitHub')
+//     //             expect(response.location).to.equal('San Francisco')
+//     //         });
+//     // });
+// });
